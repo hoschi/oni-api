@@ -38,5 +38,8 @@
     "typedoc": "^0.10.0",
     "typescript": "2.5.3",
     "vscode-languageserver-types": "^3.5.0"
+  },
+  "dependencies": {
+    "redux": "^3.7.2"
   }
 }
