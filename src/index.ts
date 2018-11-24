@@ -4,11 +4,13 @@ import * as types from "vscode-languageserver-types"
 
 import { Event, IEvent } from "oni-types"
 
-import {
-    Middleware,
-    Reducer,
-    Store
-} from "redux"
+/*
+ *import {
+ *    Middleware,
+ *    Reducer,
+ *    Store
+ *} from "redux"
+ */
 
 import * as Search from "./Search"
 import * as Ui from "./Ui"
@@ -456,7 +458,7 @@ export interface Editor {
 
     activeBuffer: Buffer
 
-    init(filesToOpen: string[], foldersToOpen: string[]): void
+    init(filesToOpen: string[]): void;
 
     /**
      * Helper function to queue / block input while a long-running process
@@ -825,11 +827,13 @@ export namespace Plugin {
         workspace: Workspace.Api
 
         populateQuickFix(entries: QuickFixEntry[]): void
-        createReduxStore<TState>(
-            name: string,
-            reducer: Reducer<TState>,
-            defaultState: TState,
-            optionalMiddleware: Middleware[],
-        ): Store<TState>
+        /*
+         *createReduxStore<TState>(
+         *    name: string,
+         *    reducer: Reducer<TState>,
+         *    defaultState: TState,
+         *    optionalMiddleware: Middleware[],
+         *): Store<TState>
+         */
     }
 }
