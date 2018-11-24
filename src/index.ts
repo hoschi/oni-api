@@ -810,6 +810,7 @@ export namespace Plugin {
         input: Input.InputManager
         language: any /* TODO */
         log: any /* TODO */
+        neovimEditorFactory: any /* TODO */
         notifications: Notifications.Api
         overlays: Overlays.Api
         plugins: IPluginManager
