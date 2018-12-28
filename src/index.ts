@@ -354,6 +354,8 @@ export interface NeovimEditorCapability {
 
     // Execute a command
     command(command: string): Promise<void>
+
+    request<T>(request: string, args: any[]): Promise<T>
 }
 
 /**
