@@ -488,7 +488,7 @@ export interface Editor {
     onBufferLeave: IEvent<EditorBufferEventArgs>
     onBufferChanged: IEvent<EditorBufferChangedEventArgs>
     onBufferScrolled: IEvent<EditorBufferScrolledEventArgs>
-    onBufferSaved: IEvent<EditorBufferEventArgs>
+    onBufferSaved: IEvent<EditorBufferSavedEventArgs>
     onCursorMoved: IEvent<Cursor>
     onModeChanged: IEvent<Vim.Mode>
     onTabsUpdate: IEvent<number>
@@ -500,6 +500,12 @@ export interface Editor {
 export interface EditorBufferChangedEventArgs {
     buffer: Buffer
     contentChanges: types.TextDocumentContentChangeEvent[]
+}
+
+export interface EditorBufferSavedEventArgs {
+    id: string
+    language: string
+    filePath: string
 }
 
 export interface EditorBufferScrolledEventArgs {
