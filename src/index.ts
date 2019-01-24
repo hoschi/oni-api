@@ -356,6 +356,9 @@ export interface NeovimEditorCapability {
     command(command: string): Promise<void>
 
     request<T>(request: string, args: any[]): Promise<T>
+
+    onBufLinesEvent: IEvent<IBufLinesEvent>
+    onBufDetachEvent: IEvent<string>
 }
 
 /**
@@ -538,6 +541,8 @@ export interface Buffer {
     getCursorPosition(): Promise<types.Position>
     handleInput(key: string): boolean
     setScratchBuffer(): Promise<void>
+    attach(): Promise<boolean>
+    detach(): Promise<boolean>
 }
 
 export interface InactiveBuffer {
@@ -558,8 +563,19 @@ export interface Cursor {
 
 // TODO: Remove this, replace with buffer
 export interface EditorBufferEventArgs {
+    id: string
+    modified: boolean
     language: string
     filePath: string
+}
+
+export interface IBufLinesEvent {
+    buf: number
+    changedtick: any
+    firstline: number
+    lastline: number
+    linedata: string[]
+    more: boolean
 }
 
 export interface Log {
