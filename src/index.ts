@@ -2,7 +2,7 @@ import * as ChildProcess from "child_process"
 
 import * as types from "vscode-languageserver-types"
 
-import { Event, IEvent } from "oni-types"
+import { Event, IEvent, IDisposable } from "oni-types"
 
 import {
     Middleware,
@@ -498,6 +498,7 @@ export interface Editor {
 
     // Optional capabilities for the editor to implement
     neovim?: NeovimEditorCapability
+    syntaxHighlighter?: ISyntaxHighlighter
 }
 
 export interface EditorBufferChangedEventArgs {
@@ -858,4 +859,19 @@ export namespace Plugin {
             optionalMiddleware: Middleware[],
         ): Store<TState>
     }
+}
+
+export interface ISyntaxHighlightTokenInfo {
+    scopes: string[]
+    range: types.Range
+}
+
+export interface ISyntaxHighlighter extends IDisposable {
+    notifyBufferUpdate(evt: EditorBufferChangedEventArgs): Promise<void>
+    notifyViewportChanged(bufferId: string, topLineInView: number, bottomLineInView: number): void
+    notifyColorschemeRedraw(id: string): void
+
+    updateBuffer(lines: string[], buffer: Buffer): Promise<void>
+    updateLine(line: string, lineNumber: number, buffer: Buffer): Promise<void>
+    getHighlightTokenAt(bufferId: string, position: types.Position): ISyntaxHighlightTokenInfo
 }
