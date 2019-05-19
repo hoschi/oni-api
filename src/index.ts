@@ -494,11 +494,16 @@ export interface Editor {
     onBufferSaved: IEvent<EditorBufferSavedEventArgs>
     onCursorMoved: IEvent<Cursor>
     onModeChanged: IEvent<Vim.Mode>
-    onTabsUpdate: IEvent<number>
+    onTabsUpdate: IEvent<TabsUpdateEventArgs>
 
     // Optional capabilities for the editor to implement
     neovim?: NeovimEditorCapability
     syntaxHighlighter?: ISyntaxHighlighter
+}
+
+export interface TabsUpdateEventArgs {
+    currentTabId: number,
+    deletedTabId?: number
 }
 
 export interface EditorBufferChangedEventArgs {
