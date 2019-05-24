@@ -188,9 +188,12 @@ export interface IWindowManager {
 
     // Moves from the currently focused split to another focused split
     move(direction: Direction): void
+
+    updatePrimarySplits(): void
 }
 
 export interface IWindowSplit {
+    isSoftHidden: boolean
     render(): JSX.Element
 }
 
